@@ -1,0 +1,2 @@
+/* src/db klasöründe Contact adında bir iletişim modeli oluşturun. */
+//createdAt ve updatedAt alanlarının otomatik olarak oluşturulması için model oluştururken timestamps: true parametresini kullanabilirsiniz. Bu, nesneye iki alan ekler: createdAt (oluşturulma tarihi) ve updatedAt (güncellenme tarihi); bunları manuel olarak eklemenize gerek yoktur.
