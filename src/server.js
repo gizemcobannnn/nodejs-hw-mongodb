@@ -8,9 +8,35 @@
 //Sunucu başarıyla başlatıldığında konsola “Server is running on port {PORT}” mesajının yazdırılması; burada {PORT} sizin port numaranızdır
 
 import express from 'express';
+import cors from 'cors';
+import pino from 'pino-http';
 
-const server = express();
+export const setupServer = ()=>{
+    const server = express();
 
+
+    const PORT= Number(process.env('PORT'));
+
+    server.use(
+        pino({
+          transport: {
+            target: 'pino-pretty',
+          },
+        }),
+      );
+    
+    server.get('*',(req,res)=>{
+    
+        res.status(404).json({
+            status: 404,
+            message: "Not available route",
+        });
+    });
+
+    server.use(express.json());
+    server.use(cors());
+
+    
 server.get('/contacts',(req,res)=>{
     res.status(200).json({
         status: 200,
@@ -22,11 +48,11 @@ server.get('/contacts',(req,res)=>{
 
 
 server.get('/contacts/:contactId',(req,res)=>{
+    
     res.status(200).json({
         status: 200,
         message: "Successfully found contact with id {**contactId**}!",
-        data:
-            // iletişim nesnesi
+        data:contact
     });
     res.status(404).json({
         status: 404,
@@ -36,3 +62,14 @@ server.get('/contacts/:contactId',(req,res)=>{
             // İstek işlenmesi sonucunda elde edilen iletişim
     });
 });
+
+
+    server.listen(PORT,()=>{
+        console.log(`Server is running on port ${PORT}.`)
+    });
+}
+
+
+
+
+
