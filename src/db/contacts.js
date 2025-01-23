@@ -4,7 +4,7 @@
 // Bu, nesneye iki alan ekler: createdAt (oluşturulma tarihi) ve updatedAt (güncellenme tarihi); bunları manuel olarak eklemenize gerek yoktur.
 
 
-import { Schema } from 'mongoose';
+import { Schema, model} from 'mongoose';
 
 const contactsSchema = new Schema(
   {

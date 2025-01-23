@@ -1,9 +1,11 @@
 //initMongoConnection fonksiyonu 
 import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 
 export const initMongoConnection = async() =>{
-
   try{
     const user = process.env.MONGODB_USER;
     const pwd = process.env.MONGODB_PASSWORD;
